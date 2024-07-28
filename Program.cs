@@ -1,40 +1,54 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 
-public class Local_to_remote
+public static class JadenCase
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine($"{HighAndLow("1 2 -3 4 5")}"); 
+        Console.WriteLine($"{GetVowelCount("abracadabra")}");
     }
 
-    public static string HighAndLow(string numbers)
+    public static int GetVowelCount(string str)
     {
-       
-    //    int number=int.Parse()
-            var number=numbers.Split(' ');
-            int[] result=new int[number.Length];
-            for (int i = 0; i < number.Length; i++)
-            {
-                result[i]=int.Parse(number[i]);
-            }
+        int vowelCount = 0;
+        char[] vowel = { 'a', 'e', 'i', 'o', 'u' };
+        char[] _charLenth = str.ToLower().ToCharArray();
+        // int result = 0;
 
-            int[] height=[0];
-            int[] low=[0];
-
-        for (int i = 1; i < result.Length; i++)
+        for (int i = 0; i < _charLenth.Length; i++)
         {
-            if(height[0]<result[i]){
-                height[0]=result[i];
-            }else if(low[0]>result[i]){
-                low[0]=result[i];
-            }
+            // switch (_charLenth[i])
+            // {
+            //     case 'a':
+            //         vowelCount++;
+            //         break;
+            //     case 'e':
+            //         vowelCount++;
+            //         break;
+            //     case 'i':
+            //         vowelCount++;
+            //         break;
+            //     case 'o':
+            //         vowelCount++;
+            //         break;
+            //     case 'u':
+            //         vowelCount++;
+            //         break;
+            //     default:
+            //         break;
+            // }
+            vowelCount = _charLenth[i] switch
+            {
+                'a' => vowelCount + 1,
+                'e' => vowelCount + 1,
+                'i' => vowelCount + 1,
+                'o' => vowelCount + 1,
+                'u' => vowelCount + 1,
+                _ => vowelCount + 0,
+            };
         }
 
-        Console.WriteLine($"height : {height[0]}");
-        Console.WriteLine($"low : {low[0]}");
-
-           
-        return "throw towel";
+        return vowelCount;
     }
 }
